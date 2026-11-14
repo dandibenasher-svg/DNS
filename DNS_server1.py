@@ -97,13 +97,17 @@ while True:
                             if answer is None:
                                 break
                             answer = answer.decode()
-                            is_ip = data.count(".") == 3 #when updating server number one we need to check if what we got was an ip or name
-                            if is_ip:
-                                ip_to_name[data] = answer  #if its an ip we insert the name
+                            #if answer wasnt found in the central server
+                            if answer == "not found in central server":
+                                send_data(client_sock, 4, answer)
                             else:
-                                ip_to_name[answer] = data #if its a name we insert the ip
+                                is_ip = data.count(".") == 3 #when updating server number one we need to check if what we got was an ip or name
+                                if is_ip:
+                                    ip_to_name[data] = answer  #if its an ip we insert the name
+                                else:
+                                    ip_to_name[answer] = data #if its a name we insert the ip
 
-                            send_data(client_sock, 4, answer)
+                                send_data(client_sock, 4, answer)
                          except Exception as e:
                             print("communication error: " + str(e))
                             break

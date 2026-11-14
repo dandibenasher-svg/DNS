@@ -70,7 +70,7 @@ while True:
                 print("communication error: " + str(e))
                 break
 
-            if answer != "not found in server one":
+            if answer != "not found in central server":
                 ip_to_name[inp_user] = answer
 
     elif inp_user =="2":
@@ -94,7 +94,7 @@ while True:
             except Exception as e:
                 print("communication error: " + str(e))
                 break
-            if answer != "not found in server one":
+            if answer != "not found in central server":
                 ip_to_name[answer] = inp_user
 
     elif inp_user =="3":
